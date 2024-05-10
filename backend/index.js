@@ -85,7 +85,7 @@ app.post("/create-account", async (req, res) => {
 });
 
 // Login User
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   if (!email) {
@@ -97,13 +97,13 @@ app.post("/login", (req, res) => {
   }
 
   // Verificamos que exista el correo
-  const userInfo = { email, password };
+  const userInfo = await User.findOne({ email: email });
 
   if (!userInfo) {
     return res.status(400).json({ message: "User not found" });
   }
 
-  if (userInfo.email === email && userInfo.password === password) {
+  if (userInfo.email == email && userInfo.password == password) {
     const user = { user: userInfo };
     const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: "36000",
