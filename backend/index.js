@@ -4,11 +4,11 @@ import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
 
-import User from "./models/user.model.js";
-import Note from "./models/note.model.js";
-
 import jwt from "jsonwebtoken";
 import { authenticateToken } from "./utilities.js";
+
+import User from "./models/user.model.js";
+import Note from "./models/note.model.js";
 
 // Conexión DB
 mongoose.connect(process.env.CONNECTION_STRING);
@@ -106,7 +106,7 @@ app.post("/login", async (req, res) => {
   if (userInfo.email == email && userInfo.password == password) {
     const user = { user: userInfo };
     const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: "36000",
+      expiresIn: "36000m",
     });
 
     return res.json({
