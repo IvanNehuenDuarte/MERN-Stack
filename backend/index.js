@@ -326,8 +326,6 @@ app.get("/search-notes/", authenticateToken, async (req, res) => {
 // Conexión al servidor
 const PORT = process.env.PORT || 8000;
 
-app.listen(PORT, () => {
-  console.log(`Server started at ${PORT}`);
-});
+app.listen(PORT);
 
 export default app;
