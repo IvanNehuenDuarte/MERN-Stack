@@ -21,7 +21,7 @@ app.use(express.json());
 // Cors para conectar back y front
 app.use(
   cors({
-    origin: "https://notes-5lm3bw4o5-ivannehuenduartes-projects.vercel.app",
+    origin: "https://nomeolvido.vercel.app/",
   })
 );
 
