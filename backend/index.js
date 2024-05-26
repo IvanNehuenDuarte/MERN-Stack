@@ -15,9 +15,6 @@ mongoose.connect(process.env.CONNECTION_STRING);
 
 const app = express();
 
-// Uso de archivos Json
-app.use(express.json());
-
 // Cors para conectar back y front
 const corsOptions = {
   origin: "https://nomeolvidomas.netlify.app",
@@ -27,6 +24,9 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+// Uso de archivos Json
+app.use(express.json());
 
 //** Backend Ready!!! */
 
