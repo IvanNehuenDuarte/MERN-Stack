@@ -31,6 +31,15 @@ const SignUp = () => {
       return;
     }
 
+    // Validamos contraseña
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      setError(
+        "La contraseña debe contener al menos una letra mayúscula, un número y tener al menos 8 caracteres."
+      );
+      return;
+    }
+
     setError("");
 
     // SignUp API Call

@@ -51,6 +51,16 @@ app.post("/create-account", async (req, res) => {
       .json({ error: true, message: "Password is required" });
   }
 
+  // Validar formato de la contraseña
+  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+  if (!passwordRegex.test(password)) {
+    return res.status(400).json({
+      error: true,
+      message:
+        "La contraseña debe contener al menos una letra mayúscula, un número y tener al menos 8 caracteres.",
+    });
+  }
+
   // Buscamos si existe el usuario
   const isUser = await User.findOne({ email: email });
   // Si el usuario existe
