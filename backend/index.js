@@ -19,11 +19,14 @@ const app = express();
 app.use(express.json());
 
 // Cors para conectar back y front
-app.use(
-  cors({
-    origin: "https://nomeolvidomas.netlify.app/",
-  })
-);
+const corsOptions = {
+  origin: "https://nomeolvidomas.netlify.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 //** Backend Ready!!! */
 
